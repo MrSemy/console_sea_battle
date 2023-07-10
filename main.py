@@ -28,6 +28,9 @@ class BoardUsedException(BoardException):
         return "Вы уже стреляли в эту клетку"
 
 
+class BoardAIUsedException(BoardException):
+    pass
+
 class BoardWrongShipException(BoardException):
     pass
 
@@ -115,8 +118,10 @@ class Board:
         if self.out(d):
             raise BoardOutException()
 
-        if d in self.busy:
+        if (d in self.busy) and (self.hid is False):
             raise BoardUsedException()
+        elif (d in self.busy) and (self.hid is True):
+            return BoardAIUsedException()
 
         self.busy.append(d)
 
