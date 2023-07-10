@@ -1,5 +1,5 @@
 from random import randint
-
+from time import sleep
 
 class Dot:
     def __init__(self, x, y):
@@ -162,6 +162,7 @@ class AI(Player):
     def ask(self):
         d = Dot(randint(0, 5), randint(0, 5))
         print(f"Ход компьютера: {d.x + 1} {d.y + 1}")
+        sleep(randint(100, 200)/200)
         return d
 
 
